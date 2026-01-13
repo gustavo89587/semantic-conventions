@@ -160,6 +160,71 @@ groups:
         type: int
         brief: Requests with same seed value more likely to return same result.
         examples: [100]
+      - id: gen_ai.request.auth.type
+        stability: development
+        type:
+          members:
+            - id: api_key
+              stability: development
+              value: "api_key"
+              brief: API key based authentication.
+            - id: oauth
+              stability: development
+              value: "oauth"
+              brief: OAuth-based authentication.
+            - id: session
+              stability: development
+              value: "session"
+              brief: Session or cookie-based authentication.
+            - id: mtls
+              stability: development
+              value: "mtls"
+              brief: Mutual TLS authentication.
+            - id: none
+              stability: development
+              value: "none"
+              brief: No authentication present.
+            - id: other
+              stability: development
+              value: "other"
+              brief: Other authentication mechanism.
+        brief: Authentication mechanism used by the requester for this GenAI request.
+        note: >
+          Intended for security/abuse analytics and correlation. Avoid storing secrets.
+
+      - id: gen_ai.request.is_automated
+        stability: development
+        type: boolean
+        brief: Indicates whether the requester is likely automated (bot/script/agent) based on provider heuristics.
+        note: >
+          Traffic classification signal. Do not infer user identity.
+        examples: [true, false]
+
+      - id: gen_ai.request.risk.score
+        stability: development
+        type: double
+        brief: Normalized risk score assigned to the requester for this request, as determined by the provider.
+        note: >
+          The producing system should document its scale (e.g., 0-1 or 0-100).
+        examples: [0.12, 0.87]
+
+      - id: gen_ai.request.rate_limit.result
+        stability: development
+        type:
+          members:
+            - id: allowed
+              stability: development
+              value: "allowed"
+              brief: Request allowed.
+            - id: throttled
+              stability: development
+              value: "throttled"
+              brief: Request throttled.
+            - id: blocked
+              stability: development
+              value: "blocked"
+              brief: Request blocked.
+        brief: Rate limiting outcome applied to the requester for this request.
       - id: gen_ai.response.id
         stability: development
         type: string

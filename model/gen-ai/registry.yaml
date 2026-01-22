@@ -2,6 +2,11 @@ groups:
   - id: registry.gen_ai
     type: attribute_group
     display_name: GenAI Attributes
+
+    # Note: Attributes such as gen_ai.tool.name and gen_ai.tool.call.id
+    # were removed due to lack of stable consumers and unclear semantics.
+    # They may be reconsidered in the future with concrete use cases
+    # (e.g. multi-tool orchestration or agent planning traces).
     brief: >
       This document defines the attributes used to describe telemetry in the context of Generative Artificial Intelligence (GenAI) Models requests and responses.
     attributes:
